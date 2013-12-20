@@ -2,14 +2,14 @@
 /**
  * ArrayStore class definition.
  * 
- * @author Nathan Marshall <nathanm@studioskylab.com>
+ * @author Nathan Marshall <nathan@fludotlove.com>
  * @copyright 2013, Nathan Marshall
  */
 
 /**
  * Array store with dot-notation access.
  * 
- * @author Nathan Marshall <nathanm@studioskylab.com>
+ * @author Nathan Marshall <nathan@fludotlove.com>
  */
 class ArrayStore implements Countable, IteratorAggregate, JsonSerializable, Serializable
 {
