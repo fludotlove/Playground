@@ -14,19 +14,19 @@
 class ArrayStore implements Countable, IteratorAggregate, JsonSerializable, Serializable
 {
 
-	/**
-	 * Items in the store.
-	 * 
-	 * @var array $items
-	 */
+    /**
+     * Items in the store.
+     * 
+     * @var array $items
+     */
     protected $items = [];
 
-	/**
-	 * Create a store instance.
-	 * 
-	 * @param array $items Items to add to the store.
+    /**
+     * Create a store instance.
+     * 
+     * @param array $items Items to add to the store.
      * @return self
-	 */
+     */
     public function __construct(array $items = null)
     {
         if (is_array($items)) {
@@ -54,12 +54,12 @@ class ArrayStore implements Countable, IteratorAggregate, JsonSerializable, Seri
         return !empty($return) ? $return : $default;
     }
 
-	/**
-	 * Count the number of items in the store.
+    /**
+     * Count the number of items in the store.
      * 
-	 * @param string|null $key Item to count.
+     * @param string|null $key Item to count.
      * @return int Number of items.
-	 */
+     */
     public function count($key = null)
     {
         if (null !== $key && is_array($this->items[$key])) {
