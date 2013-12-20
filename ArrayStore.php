@@ -19,7 +19,7 @@ class ArrayStore implements Countable, IteratorAggregate, JsonSerializable, Seri
 	 * 
 	 * @var array $items
 	 */
-	protected $items = [];
+    protected $items = [];
 
 	/**
 	 * Create a store instance.
@@ -27,12 +27,12 @@ class ArrayStore implements Countable, IteratorAggregate, JsonSerializable, Seri
 	 * @param array $items Items to add to the store.
      * @return self
 	 */
-	public function __construct(array $items = null)
-	{
-		if (is_array($items)) {
-			$this->items = $items;
-		}
-	}
+    public function __construct(array $items = null)
+    {
+        if (is_array($items)) {
+            $this->items = $items;
+        }
+    }
 
     /**
      * Get any items which pass a given truth test.
@@ -60,14 +60,14 @@ class ArrayStore implements Countable, IteratorAggregate, JsonSerializable, Seri
 	 * @param string|null $key Item to count.
      * @return int Number of items.
 	 */
-	public function count($key = null)
-	{
-		if (null !== $key && is_array($this->items[$key])) {
-			return count($this->items[$key]);
-		}
+    public function count($key = null)
+    {
+        if (null !== $key && is_array($this->items[$key])) {
+            return count($this->items[$key]);
+        }
 
-		return count($this->items);
-	}
+        return count($this->items);
+    }
 
     /**
      * Get all store items except for a specified array of items.
@@ -109,15 +109,15 @@ class ArrayStore implements Countable, IteratorAggregate, JsonSerializable, Seri
      */
     public function forget($key)
     {
-    	if ($this->_uses($key)) {
-    		$this->_forget($this->items, $key);
-    	} else {
-    		if (array_key_exists($key, $this->items)) {
-    			unset($this->items[$key]);
-    		}
-    	}
+        if ($this->_uses($key)) {
+            $this->_forget($this->items, $key);
+        } else {
+            if (array_key_exists($key, $this->items)) {
+                unset($this->items[$key]);
+            }
+        }
 
-    	return $this;
+        return $this;
     }
 
     /**
@@ -133,15 +133,15 @@ class ArrayStore implements Countable, IteratorAggregate, JsonSerializable, Seri
             return $this->items;
         }
 
-		if ($this->_uses($key)) {
-			return $this->_get($this->items, $key, $default);
-		} else {
-			if (array_key_exists($key, $this->items)) {
-				return $this->items[$key];
-			}
-		}
+        if ($this->_uses($key)) {
+            return $this->_get($this->items, $key, $default);
+        } else {
+            if (array_key_exists($key, $this->items)) {
+                return $this->items[$key];
+            }
+        }
 
-    	return $default;
+        return $default;
     }
 
     /**
@@ -149,10 +149,10 @@ class ArrayStore implements Countable, IteratorAggregate, JsonSerializable, Seri
      * 
      * @return ArrayIterator
      */
-	public function getIterator()
-	{
-		return new ArrayIterator($this->items);
-	}
+    public function getIterator()
+    {
+        return new ArrayIterator($this->items);
+    }
 
     /**
      * Determine if the store has an item.
@@ -160,14 +160,14 @@ class ArrayStore implements Countable, IteratorAggregate, JsonSerializable, Seri
      * @param string $key Item to check for.
      * @return bool
      */
-	public function has($key)
-	{
-		if ($this->_uses($key)) {
-			return $this->_has($this->items, $key);
-		} else {
-			return array_key_exists($key, $this->items);
-		}
-	}
+    public function has($key)
+    {
+        if ($this->_uses($key)) {
+            return $this->_has($this->items, $key);
+        } else {
+            return array_key_exists($key, $this->items);
+        }
+    }
 
     /**
      * Return an array of store items to serialize as JSON.
@@ -284,13 +284,13 @@ class ArrayStore implements Countable, IteratorAggregate, JsonSerializable, Seri
             return $this;
         }
 
-    	if ($this->_uses($key)) {
-    		$this->_set($this->items, $key, $value);
-    	} else {
-    		$this->items[$key] = $value;
-    	}
+        if ($this->_uses($key)) {
+            $this->_set($this->items, $key, $value);
+        } else {
+            $this->items[$key] = $value;
+        }
 
-    	return $this;
+        return $this;
     }
 
     /**
