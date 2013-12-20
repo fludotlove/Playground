@@ -1,0 +1,15 @@
+#ticker {
+    text-decoration: none;
+    color: #333;
+}
+.news-reel-lead {
+    font-weight: bold;
+    cursor: default;
+    color: #c00;
+}
+.news-reel-cursor, 
+.news-reel-cursor-blink {
+    color: #fff;
+    border-left: 1px solid #666;
+    text-indent: -9999px
+}

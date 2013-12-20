@@ -1,0 +1,14 @@
+.help-tip {
+    padding: 5px;
+    position: absolute;
+    z-index: 100000;
+}
+.help-tip-inner {
+    background-color: #000;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    color: #fff;
+    max-width: 200px;
+    padding: 5px 8px 4px 8px;
+    text-align: center;
+}
