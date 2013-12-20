@@ -408,7 +408,7 @@ class ArrayStore implements Countable, IteratorAggregate, JsonSerializable, Seri
      */
     protected function _uses($key)
     {
-    	return strpos($key, '.') === false ? false : true;
+        return strpos($key, '.') === false ? false : true;
     }
 
 }
