@@ -38,7 +38,7 @@
         </tr>
     </thead>
     <tbody>
-<?php if (empty($store['incomplete'])): echo '<tr><td colspan="3">no incomplete items</td></tr>'; endif; ?>
+<?php if (empty($store['incomplete'])): echo '<tr><td>No incomplete items!</td><td>N/A</td><td></td></tr>'; endif; ?>
 <?php foreach ($store['incomplete'] as $key => $item): ?>
         <tr>
             <td><?=$pd->parse($item['description']);?></td>
@@ -63,7 +63,7 @@
         </tr>
         </thead>
     <tbody>
-<?php if (empty($store['complete'])): echo '<tr><td colspan="3">no complete items</td></tr>'; endif; ?>
+<?php if (empty($store['complete'])): echo '<tr><td>No complete items! Get cracking!</td><td>N/A</td><td></td></tr>'; endif; ?>
 <?php foreach ($store['complete'] as $key => $item): ?>
         <tr>
             <td class="complete"><?=$pd->parse($item['description']);?></td>

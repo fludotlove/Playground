@@ -57,6 +57,11 @@
                 background-color: #eee;
                 padding: 2px;
             }
+            ol, ul {
+                margin: 0;
+                padding: 0;
+                padding-left: 24px;
+            }
         </style>
     </head>
     <body>
