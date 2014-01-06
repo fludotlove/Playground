@@ -38,11 +38,14 @@ function update_store($store) {
     return file_put_contents('storage/store.json', json_encode($store), LOCK_EX);
 }
 
+$url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+$url = substr($url, 0, strrpos($url, '?'));
+
 $store = store_load();
 $store = json_decode($store, true);
 
 if (!empty($_POST)) {
-    if (isset($_POST['item_description'])) {
+    if (isset($_POST['item_description']) && $_POST['item_description'] !== '') {
         $hash = hash('sha256', time() . mt_rand(0, 999));
 
         $store[$hash] = array(
@@ -63,6 +66,14 @@ if (!empty($_POST)) {
 $complete = $incomplete = array();
 
 foreach ($store as $item) {
+    $item['description'] = preg_replace('/\#(\w+)/', '<a class="tag" href="?tag=$1">$1</a>', $item['description']);
+
+    if (isset($_GET['tag'])) {
+        if (strpos($item['description'], $_GET['tag']) === false) {
+            continue;
+        }
+    }
+
     if ($item['complete'] === false) {
         $incomplete[$item['id']] = $item;
     } else {
@@ -76,6 +87,7 @@ echo output_view('list', array(
     'store' => array(
         'complete' => $complete,
         'incomplete' => $incomplete
-    )
+    ),
+    'url' => $url
 ));
 echo output_view('footer');

@@ -2,6 +2,28 @@
         <script src="js/tblsorter.jquery.js"></script>
         <script src="js/timeago.jquery.js" type="text/javascript"></script>
         <script type="text/javascript">
+            /**
+             * jQuery.zebraStripe
+             * 
+             * A jQuery plugin to add zebra stripe classes to tables in browsers with
+             * no support for the :nth-child pseudo selector.
+             * 
+             * @author Nathan Marshall (FDL)
+             */
+            (function($) {
+                $.fn.zebraStripe = function(options) {
+                    var settings = $.extend({}, {
+                            parity: 'odd',
+                            className: 'odd'
+                        }, options);
+
+                    return this.each(function() {
+                        $('tr', $(this)).removeClass(settings.className);
+                        $('tr:nth-child(' + settings.parity + ')', $(this)).addClass(settings.className);
+                    });
+                };
+            })(jQuery);
+
             $(document).ready(function() {
                 $.tablesorter.addParser({
                     id: 'dt',
@@ -26,7 +48,9 @@
                             sorter: false
                         }
                     }
-                });
+                }).bind("sortEnd",function() {
+                    $(this).zebraStripe(); 
+                }).zebraStripe();
                 $("abbr.timeago").timeago();
 
                 $("#preview-button").click(function() {

@@ -47,10 +47,10 @@
                 text-decoration: line-through;
             }
             a {
-                color: #39f;
+                color: #5798e4;
             }
             a:hover {
-                color: #06c;
+                color: #2b7ddd;
             }
             code {
                 font-size: 1.2em;
@@ -61,6 +61,20 @@
                 margin: 0;
                 padding: 0;
                 padding-left: 24px;
+            }
+            .odd {
+                background-color: #f9f9f9;
+            }
+            .tag {
+                border-radius: 2px;
+                text-decoration: none;
+                background-color: #333;
+                color: #ddd;
+                padding: 2px;
+            }
+            .tag:hover {
+                background-color: #555;
+                color: #fff;
             }
         </style>
     </head>
