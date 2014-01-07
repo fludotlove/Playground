@@ -66,13 +66,13 @@ if (!empty($_POST)) {
 $complete = $incomplete = array();
 
 foreach ($store as $item) {
-    $item['description'] = preg_replace('/\#(\w+)/', '<a class="tag" href="?tag=$1">$1</a>', $item['description']);
-
     if (isset($_GET['tag'])) {
-        if (strpos($item['description'], $_GET['tag']) === false) {
+        if (strpos($item['description'], '#' . $_GET['tag']) === false) {
             continue;
         }
     }
+
+    $item['description'] = preg_replace('/\#(\w+)/', '<a class="tag" href="?tag=$1">$1</a>', $item['description']);
 
     if ($item['complete'] === false) {
         $incomplete[$item['id']] = $item;

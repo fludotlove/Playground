@@ -3,6 +3,7 @@
     <head>
         <title>Todo List</title>
         <link rel="stylesheet" type="text/css" href="js/sorter-theme/style.css">
+        <meta name="viewport" content="width=device-width, minimumscale=1.0, maximum-scale=1.0" />
         <style type="text/css">
             body {
                 font: 0.875em/1.1em 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -75,6 +76,50 @@
             .tag:hover {
                 background-color: #555;
                 color: #fff;
+            }
+            .add-task {
+                float: right;
+            }
+            .list-div {
+                float: left;
+                width: 80%;
+            }
+            .add-div {
+                float: left;
+                width: 20%;
+            }
+            .list-info {
+                display: none;
+                width: 100%;
+            }
+
+            /* ipad */
+            @media screen and (min-width : 480px) and (max-width : 1024px) {
+                .add-task {
+                    float: none;
+                }
+            }
+
+            /* iphone */
+            @media screen and (max-width : 480px) {
+                .add-task {
+                    float: none;
+                }
+                .list-div {
+                    float: none;
+                    width: 100%;
+                    margin-top: 1em;
+                }
+                .add-div {
+                    float: none;
+                    width: 100%;
+                }
+                .list-info {
+                    display: inline-block;
+                }
+                .tbl-info {
+                    display: none;
+                }
             }
         </style>
     </head>
