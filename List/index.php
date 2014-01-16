@@ -52,7 +52,8 @@ if (!empty($_POST)) {
             'id' => $hash,
             'description' => $_POST['item_description'],
             'complete' => false,
-            'added' => date('Y-m-d H:i:s ', time())
+            'added' => date('Y-m-d H:i:s', time()),
+            'priority' => $_POST['item_priority']
         );
     } elseif (isset($_POST['done'])) {
         $store[$_POST['done']]['complete'] = date('Y-m-d H:i:s', time());
@@ -88,6 +89,13 @@ echo output_view('list', array(
         'complete' => $complete,
         'incomplete' => $incomplete
     ),
+    'priority_options' => [
+        'Very High',
+        'High',
+        'Medium',
+        'Low',
+        'Very Low'
+    ],
     'url' => $url
 ));
 echo output_view('footer');

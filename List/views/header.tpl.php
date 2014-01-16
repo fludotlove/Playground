@@ -92,6 +92,21 @@
                 display: none;
                 width: 100%;
             }
+            .prio-very-low {
+                color: #333;
+            }
+            .prio-low {
+                color: #50a440;
+            }
+            .prio-medium {
+                color: #09c;
+            }
+            .prio-high {
+                color: #f90;
+            }
+            .prio-very-high {
+                color: #f00;
+            }
 
             /* ipad */
             @media screen and (min-width : 480px) and (max-width : 1024px) {

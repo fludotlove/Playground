@@ -37,6 +37,22 @@
                     },
                     type: 'numeric'
                 });
+                $.tablesorter.addParser({
+                    id: 'prio',
+                    is: function(s)
+                    {
+                        return false;
+                    },
+                    format: function(s)
+                    {
+                        return s.replace('Very High', 1)
+                                .replace('Very Low', 5)
+                                .replace('High', 2)
+                                .replace('Medium', 3)
+                                .replace('Low', 4);
+                    },
+                    type: 'numeric'
+                });
 
                 $(".tablesorter").tablesorter({
                     sortList: [[1,1]],
@@ -44,7 +60,10 @@
                         1: {
                             sorter: 'dt'
                         },
-                        2: { 
+                        2: {
+                            sorter: 'prio'
+                        },
+                        3: { 
                             sorter: false
                         }
                     }
