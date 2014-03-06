@@ -1,15 +1,6 @@
 <?php
-/**
- * 
- * 
- */
 
-/**
- * 
- * 
- * 
- */
-class EventStore
+class Event
 {
     
     /**
@@ -24,7 +15,7 @@ class EventStore
      * 
      * @var array $firing
      */
-    protected $firing = [];
+    protected $fired = [];
 
     /**
      * Events sorted by priority.
@@ -63,13 +54,17 @@ class EventStore
     {
         $responses = [];
 
-        $this->firing[] = $event;
+        $this->fired[] = [
+            'event' => $event,
+            'parameters' => $parameters
+        ];
 
-        foreach ($this->getListeners($event) as $listener) {
+        $listeners = $this->getListeners($event);
+        foreach ($listeners as $listener) {
             $response = call_user_func_array($listener, $parameters);
 
             if (null !== $response && $halt) {
-                array_pop($this->firing);
+                array_pop($this->fired);
 
                 return $response;
             }
@@ -81,33 +76,19 @@ class EventStore
             $responses[] = $response;
         }
 
-        array_pop($this->firing);
+        array_pop($this->fired);
 
         return $halt ? null : $responses;
     }
 
     /**
-     * Get the current or last fired event.
+     * Get the firing event.
      * 
      * @return string
      */
     public function firing()
     {
-        return end($this->firing);
-    }
-
-    /**
-     * Remove an events listeners.
-     * 
-     * @param string $event Name of the event.
-     * @return self
-     */
-    public function forget($event)
-    {
-        unset($this->events[$event]);
-        unset($this->sorted[$event]);
-
-        return $this;
+        return end($this->fired);
     }
 
     /**
@@ -131,17 +112,31 @@ class EventStore
      * Register an event listener.
      * 
      * @param string $event Name of the event.
-     * @param Closure $callback Callback to fire.
+     * @param callable $callback Callback to fire.
      * @param int $priority Event priority.
      * @return self
      */
-    public function listen($event, Closure $callback, $priority = 0)
+    public function addListener($event, callable $callback, $priority = 0)
     {
         if (false !== strpos($event, '*')) {
             $this->wildcards[$event][] = $callback;
         } else {
             $this->events[$event][$priority][] = $callback;
         }
+
+        return $this;
+    }
+
+    /**
+     * Remove an events listeners.
+     * 
+     * @param string $event Name of the event.
+     * @return self
+     */
+    public function removeListeners($event)
+    {
+        unset($this->events[$event]);
+        unset($this->sorted[$event]);
 
         return $this;
     }
